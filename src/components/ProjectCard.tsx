@@ -1,3 +1,5 @@
+// From  https://mui.com/components/cards/
+
 import React from 'react';
 
 import { 
@@ -7,14 +9,16 @@ import {
   CardHeader,
   Button
  } from '@mui/material';
-// import GroupedButton from '../Buttons/GroupedButton';
 
+
+ // Create interface for 
  export interface ProjectCardProps {
-   projectTitle: string,
-   projectStatus: string
+    id: string,
+    projectTitle: string,
+    projectStatus: 'active' | 'archived'
  }
 
- const requestButton= ['Active', 'Archive', 'Hold']
+
 
 
 export default function ProjectCard(props: ProjectCardProps) {
