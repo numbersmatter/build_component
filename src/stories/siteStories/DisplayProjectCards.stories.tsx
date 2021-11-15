@@ -38,8 +38,8 @@ Primary.args = {
     },
     {
       id: '2',
-      projectTitle: 'second project',
+      projectTitle: 'Second Project',
       projectStatus: 'archived'
-    }
+    },
   ]
 };

@@ -19,10 +19,11 @@ const projectsArray: ProjectCardProps[] = [
   },
   {
     id: '2',
-    projectTitle: 'second project',
+    projectTitle: 'Second Project',
     projectStatus: 'archived'
-  }
+  },
 ]
+
 
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -32,8 +33,8 @@ export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
   projectArray: projectsArray,
-  filterValues: {
+  filterValue: {
     'active': true,
-    'archived': true
+    'archived': true,
   }
 };

@@ -1,42 +1,46 @@
-// Given a projects array with a field called projectStatus,
-// in which this field can be either 'active" or "archived",
-// and a given an object with each possible value as a named property,
-// with the value of that property being true or false
-// display only the projects that match true values for their projectStatus
+// Given an array of project objects with a field called projectStatus,
+// in which that field can be any string value of an array,
+// and given a filter value object with property names for each value in that array,
+// and which the value of that property is either true or false,
+// display only the project objects that have a project status values which are true in the filter value object
+
+// import DisplayProjectCards
+import React from 'react'
+import DisplayProjectCards, { DisplayProjectCardsProps } from './DisplayProjectCards'
 
 
-import React from 'react';
-import DisplayProjectCards, { DisplayProjectCardsProps } from './DisplayProjectCards';
 
-// pass project array
-// create  interface to tell the component what to expect
-
+// create an interface to let the component know what to expect
 export interface FilterProjectCardsProps extends DisplayProjectCardsProps {
-  filterValues: {
-    'active': boolean,
-    'archived': boolean, 
+  filterValue: {
+    [key: string]: boolean
   }
 };
 
 
-
+// assign interface to props
 export default function FilterProjectCards(props: FilterProjectCardsProps) {
-  const filterValues = props.filterValues
 
-  // filter on the data by value(s)
-  const filteredProjects = props.projectArray.filter(
-    // create a function that returns either true or false for a given project in the project array
-    (project)=>(filterValues[project.projectStatus])
+  // create a place to store filter value
+  const filterValue = props.filterValue
 
+  // create a place to store the filtered project objects
+  const filteredProjectsArray = 
+  
+  // for each project object in the array of project objects filter by filter value
+  props.projectArray.filter(
+
+    // create a function that accepts project object returns true to keep an object and false to reject the object
+    (project)=>( filterValue[project.projectStatus])
   )
 
+
   return (
-    // display the project cards from the filtered values
-    <>
+    <div>
+      {/* display the kept project objects as project cards */}
       <DisplayProjectCards
-        projectArray={filteredProjects} 
+        projectArray={filteredProjectsArray}
       />
-      
-    </>
+    </div>
   )
 }

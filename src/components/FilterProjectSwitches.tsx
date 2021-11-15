@@ -1,7 +1,7 @@
-// create a switch for showing 'active',
-// create a switch for showing 'archived'
+// given an array of string values,
+// create a switch which will control the boolean value of a property with that string value
 
-
+// import needed components 
 import * as React from 'react';
 import {
   FormLabel,
@@ -12,44 +12,60 @@ import {
   Switch,
 } from '@mui/material'
 
-// create an interface
-export interface FilterProjectSwitchesProps {
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>)=>void,
-  filterValues: {
-    [key:string]: boolean
-  }
+
+
+
+// create some sample data
+export type AcceptedValue = 'active' | 'archived' | 'favorited'
+ 
+
+
+ export interface IntialState {
+   [key:string]: boolean,
+ }
+
+//create inteface 
+export interface FilterProjectSwitchesProps{
+  filterAbleValues: string[],
+  filterValue: IntialState,
+  handleSwitchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 
 }
 
-
+// assign interface to props
 export default function FilterProjectSwitches(props: FilterProjectSwitchesProps) {
+  
+  // hold state filterValue
+  const filterValue = props.filterValue;
 
-  const handleChange= props.handleChange;
-  const state = props.filterValues;
+  const handleChange =props.handleSwitchChange;
 
   return (
     <>
       <FormControl component="fieldset" variant="standard">
-        <FormLabel component="legend">Select the Projects you would like to see</FormLabel>
+        <FormLabel component="legend">Choose which forms to display</FormLabel>
         <FormGroup row>
-          <FormControlLabel
-            control={
-              <Switch checked={state.active} onChange={handleChange} name="active" />
-            }
-            label="active"
-          />
-          <FormControlLabel
-            control={
-              <Switch checked={state.archived} onChange={handleChange} name="archived" />
-            }
-            label="archived"
-          />
-          
+          {/* given an array of string values create switches with the name property of those strings  */}
+
+          {
+            props.filterAbleValues.map(
+              // create a function that accepts that string value and creates a switch with that name
+              (name)=>(
+                <FormControlLabel
+                control={
+                  // create a switch whose position is determined by the property of 'active' on the state object name this switch 'active'
+                  <Switch checked={filterValue[name]} onChange={handleChange} name={name} />
+                }
+                label={name}
+              />
+              )
+            )
+          }
         </FormGroup>
-        <FormHelperText></FormHelperText>
+        <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      {/* // add some debugging text */}
-      <p>{JSON.stringify(state)}</p>
+      {/* display state for debugging */}
+      <p>{JSON.stringify(filterValue)}</p>
     </>
   );
 }

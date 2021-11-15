@@ -1,56 +1,54 @@
-// Given an array of Projects,
-// display each with its own project card
+// Given an array of project objects,
+// display each object as a project card
 
-
+//import project card
 import React from 'react';
-import {
-  Stack
-} from '@mui/material'
 import ProjectCard, { ProjectCardProps } from '../ProjectCard';
+import { Stack } from '@mui/material';
+
+// create some sample data to refer back to
+const sampleData: ProjectCardProps[] = [
+  {
+    id: '1',
+    projectTitle: 'First Project',
+    projectStatus: 'active'
+  },
+  {
+    id: '2',
+    projectTitle: 'Second Project',
+    projectStatus: 'archived'
+  },
+];
 
 
-// create some sample data 
- const projectsArray = [
-   {
-     id: '1',
-     projectTitle: 'First Project',
-     projectStatus: 'active'
-   },
-   {
-     id: '2',
-     projectTitle: 'second project',
-     projectStatus: 'archived'
-   }
- ]
-
-
-// create an interface to accept the given data 
+// create an interface to accept the given data
 export interface DisplayProjectCardsProps {
   projectArray: ProjectCardProps[],
 }
 
 
-
+// assign the interface as props
 export default function DisplayProjectCards(props: DisplayProjectCardsProps) {
+  
+  
   return (
     <Stack spacing={2}>
-    {/*  for each project element in the array of projects  */}
+    {/*  for each project object in the array of project objects call function */}
     {
       props.projectArray.map(
-        //  display a project card with the project properties from that project 
-
+       
+        // {/* create a function that accepts a project object and returns a project card with those properties */}
         (project)=>(
-          <ProjectCard
+          <ProjectCard 
             id={project.id}
             projectTitle={project.projectTitle}
-            projectStatus={project.projectStatus} 
+            projectStatus={project.projectStatus}
           />
         )
-        
-
       )
     }
       
     </Stack>
   )
 }
+

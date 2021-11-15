@@ -46,6 +46,16 @@ Standard.args={
       projectTitle: 'Fourth project',
       projectStatus: 'active'
     }
+  ],
+  filterStateArray: [
+    {
+      name: 'active',
+      intialValue: true,
+    },
+    {
+      name: 'archived',
+      intialValue: true,
+    },
   ]
 
 }
